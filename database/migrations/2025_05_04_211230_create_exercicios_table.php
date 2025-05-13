@@ -11,16 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('items', function (Blueprint $table) {
+        Schema::create('exercicios', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->integer('value');
-            $table->integer('quantity');
-            $table->integer('min');
-            $table->integer('max');
+            $table->string('description');
+            $table->enum('operation', ['min', 'max']);
+            $table->integer('limit');
             $table->integer('total');
-            $table->unsignedBigInteger('exercicio_id');
-            $table->foreign('exercicio_id')->references('id')->on('exercicios');
             $table->timestamps();
         });
     }
@@ -30,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('items');
+        Schema::dropIfExists('exercicios');
     }
 };
